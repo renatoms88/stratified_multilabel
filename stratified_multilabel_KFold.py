@@ -7,14 +7,14 @@ class stratified_multilabel_KFold():
                                      discovery in databases (ECML PKDD'11), volume part III, pp. 145-158 (2011)
     """
 
-    def __init__(self, n_splits=5, shuffleData=True, randomSeed=None):
+    def __init__(self, n_splits=5, shuffle=True, randomSeed=None):
         self.n_splits = n_splits
-        self.shuffleData = shuffleData
+        self.shuffle = shuffle
         self.randomSeed = randomSeed
         
     def split(self,target):
         k = self.n_splits
-        shuffleData = self.shuffleData
+        shuffle = self.shuffle
         randomSeed = self.randomSeed
         
         nLabels = target.shape[1]
@@ -32,7 +32,7 @@ class stratified_multilabel_KFold():
         
         nD = target.shape[0] #number of remaining examples
     
-        if shuffleData is True:
+        if shuffle is True:
             if randomSeed is None:
                 idxRemainingExamples = np.random.RandomState().permutation(range(nD))
             else:
